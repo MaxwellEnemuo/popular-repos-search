@@ -1,0 +1,25 @@
+{
+  "name": "backend-coding-challenge-sa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "module": "module",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Chinedu Maxwell Enemuo",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.11.18",
+    "jest": "^29.4.1",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.2.6"
+  }
+}
