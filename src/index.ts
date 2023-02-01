@@ -1,5 +1,6 @@
 import {
   GetPopularRepositories,
+  QueryParams,
   RepositoryItems,
   RepositoryPerPage,
 } from "./types";
@@ -9,7 +10,7 @@ const getRepositoriesQueryParams = (
   date: string,
   per_page: RepositoryPerPage,
   language?: string
-) => ({
+): QueryParams => ({
   q: `created:>${date}${language ? ` language:${language}` : ""}`,
   per_page,
   sort: "stars",
