@@ -24,7 +24,7 @@ describe("Test for a list of the most popular repositories, sorted by number of 
     const response = await getPopularRepositories({
       date: "2019-01-10",
       language: "PHP",
-      per_page: RepositoryPerPage.Top10,
+      per_page: RepositoryPerPage.TEN,
     });
 
     expect(getPopularRepositories).toHaveBeenCalled();
@@ -47,7 +47,10 @@ describe("Test for an option to view the top 10, 50, 100 repositories", () => {
     });
     const getPopularRepositories = jest.fn().mockResolvedValue(mockResponse);
 
-    const response = await getPopularRepositories({ ...queryParams, per_page: RepositoryPerPage.Top10 });
+    const response = await getPopularRepositories({
+      ...queryParams,
+      per_page: RepositoryPerPage.TEN,
+    });
     expect(getPopularRepositories).toHaveBeenCalled();
     expect(response.length).toBe(10);
   });
@@ -60,7 +63,10 @@ describe("Test for an option to view the top 10, 50, 100 repositories", () => {
     });
     const getPopularRepositories = jest.fn().mockResolvedValue(mockResponse);
 
-    const response = await getPopularRepositories({ ...queryParams, per_page: RepositoryPerPage.Top50 });
+    const response = await getPopularRepositories({
+      ...queryParams,
+      per_page: RepositoryPerPage.FIFTY,
+    });
     expect(getPopularRepositories).toHaveBeenCalled();
     expect(response.length).toBe(50);
   });
@@ -73,7 +79,10 @@ describe("Test for an option to view the top 10, 50, 100 repositories", () => {
     });
     const getPopularRepositories = jest.fn().mockResolvedValue(mockResponse);
 
-    const response = await getPopularRepositories({ ...queryParams, per_page: RepositoryPerPage.Top100 });
+    const response = await getPopularRepositories({
+      ...queryParams,
+      per_page: RepositoryPerPage.HUNDERED,
+    });
     expect(getPopularRepositories).toHaveBeenCalled();
     expect(response.length).toBe(100);
   });
@@ -86,7 +95,10 @@ describe("Test for the most popular repositories created from a given date onwar
   };
   it("should return popular repositories created from 2020-01-01 onwards", async () => {
     const getPopularRepositories = jest.fn().mockResolvedValue(mockResponse);
-    const response = await getPopularRepositories({ ...queryParams, per_page: RepositoryPerPage.Top10 });
+    const response = await getPopularRepositories({
+      ...queryParams,
+      per_page: RepositoryPerPage.TEN,
+    });
 
     expect(getPopularRepositories).toHaveBeenCalled();
 
@@ -102,15 +114,20 @@ describe("Test for a filter for the programming language", () => {
   const queryParams = {
     date: "2019-01-10",
     language: "PHP",
-    per_page: RepositoryPerPage.Top10,
+    per_page: RepositoryPerPage.TEN,
   };
   it("should return popular repositories with the given programming language", async () => {
     const getPopularRepositories = jest.fn().mockResolvedValue(mockResponse);
-    const response = await getPopularRepositories({ ...queryParams, per_page: RepositoryPerPage.Top100 });
+    const response = await getPopularRepositories({
+      ...queryParams,
+      per_page: RepositoryPerPage.HUNDERED,
+    });
 
     expect(getPopularRepositories).toHaveBeenCalled();
     expect(response).toBeDefined();
     expect(Array.isArray(response)).toBe(true);
-    expect(response[0].language.toLowerCase()).toMatch(queryParams.language.toLowerCase());
+    expect(response[0].language.toLowerCase()).toMatch(
+      queryParams.language.toLowerCase()
+    );
   });
 });

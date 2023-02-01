@@ -1,14 +1,13 @@
 ### Description
 
-- The idea of this project is to implement a backend application for discovering popular
-  repositories on GitHub.
+- The idea of this project is to implement a backend application for discovering popular repositories on GitHub using Node/TypeScript.
 
 ### Service Specification
 
 - A list of the most popular repositories, sorted by number of stars.
-- An option to be able to view the top 10, 50, 100 repositories should be available.
-- Given a date, the most popular repositories created from this date onwards should be returned.
-- A filter for the programming language would be a great addition to have.
+- An option to view the top 10, 50, 100 repositories.
+- Given a date, the most popular repositories created from this date onwards should is returned.
+- A filter for the programming language.
 
 ### Implementation Details
 
@@ -21,7 +20,7 @@
 $ npm install
 ```
 
-### Command to execute the example function in index.ts
+### Execute the example function in index.ts
 
 ```bash
 $ npm start

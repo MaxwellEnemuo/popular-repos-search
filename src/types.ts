@@ -5,9 +5,9 @@ export interface GetPopularRepositories {
 }
 
 export enum RepositoryPerPage {
-  Top10 = 10,
-  Top50 = 50,
-  Top100 = 100,
+  "TEN" = 10,
+  "FIFTY" = 50,
+  "HUNDERED" = 100,
 }
 
 export interface QueryParams {

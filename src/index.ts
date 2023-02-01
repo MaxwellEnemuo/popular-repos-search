@@ -1,30 +1,36 @@
-import { GetPopularRepositories, RepositoryItems, RepositoryPerPage } from "./types";
-import { handlePopularRepositoriesApiCall } from "./restCalls";
+import {
+  GetPopularRepositories,
+  RepositoryItems,
+  RepositoryPerPage,
+} from "./types";
+import { handlePopularRepositoriesApiCall } from "./api/restCalls";
 
-export const getPopularRepositories = async ({
+const getRepositoriesQueryParams = (
+  date: string,
+  per_page: RepositoryPerPage,
+  language?: string
+) => ({
+  q: `created:>${date}${language ? ` language:${language}` : ""}`,
+  per_page,
+  sort: "stars",
+  order: "desc",
+});
+
+const getPopularRepositories = async ({
   date,
   language,
-  per_page = RepositoryPerPage.Top10,
+  per_page = RepositoryPerPage.TEN,
 }: GetPopularRepositories): Promise<RepositoryItems[]> => {
-  const queryParams = {
-    q: `created:>${date}${language ? ` language:${language}` : ""}`,
-    per_page,
-    sort: "stars",
-    order: "desc",
-  };
-  try {
-    return await handlePopularRepositoriesApiCall(queryParams);
-  } catch (error) {
-    console.error("An error occurred while fetching repositories", error);
-    throw error;
-  }
+  const queryParams = getRepositoriesQueryParams(date, per_page, language);
+  return await handlePopularRepositoriesApiCall(queryParams);
 };
 
-// example
+// Run npm start. Uncomment and/or update object values and run command again
 (async function () {
   const repositories = await getPopularRepositories({
     date: "2019-01-10",
-    language: "PHP",
+    // language: "Python",
+    // per_page: RepositoryPerPage.FIFTY,
   });
   console.log(repositories);
 })();
