@@ -15,6 +15,7 @@ export const handlePopularRepositoriesApiCall = async (queryParams: QueryParams)
       created_at,
     }));
   } catch (error) {
+    console.error("An error occurred while fetching repositories", error);
     throw error;
   }
 };

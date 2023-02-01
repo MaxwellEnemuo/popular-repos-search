@@ -15,6 +15,7 @@ export const getPopularRepositories = async ({
   try {
     return await handlePopularRepositoriesApiCall(queryParams);
   } catch (error) {
+    console.error("An error occurred while fetching repositories", error);
     throw error;
   }
 };
