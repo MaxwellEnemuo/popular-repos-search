@@ -1,4 +1,4 @@
-import { RepositoryItems, RepositoryPerPage } from "./types";
+import { RepositoryItems, RepositoryPerPage } from "../types";
 
 const mockResponse = [
   {

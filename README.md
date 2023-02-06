@@ -20,14 +20,36 @@
 $ npm install
 ```
 
-### Execute the example function in index.ts
+### Build the app
 
 ```bash
-$ npm start
+$ npm run build
+```
+
+### Run app in debug mode
+
+```bash
+$ npm run serve-debug
 ```
 
 ### Test
 
 ```bash
 $ npm test
+```
+
+Make a post request to:
+
+```bash
+http://localhost:4000/repositories
+```
+
+Example payload:
+
+```bash
+{
+	"date": "2019-01-10",
+	"language": "Rust",
+	"per_page": 50
+}
 ```

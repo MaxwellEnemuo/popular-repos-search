@@ -17,7 +17,7 @@ const getRepositoriesQueryParams = (
   order: "desc",
 });
 
-const getPopularRepositories = async ({
+export const getPopularRepositories = async ({
   date,
   language,
   per_page = RepositoryPerPage.TEN,
@@ -25,13 +25,3 @@ const getPopularRepositories = async ({
   const queryParams = getRepositoriesQueryParams(date, per_page, language);
   return await handlePopularRepositoriesApiCall(queryParams);
 };
-
-// Run npm start. Uncomment and/or update object values and run command again
-(async function () {
-  const repositories = await getPopularRepositories({
-    date: "2019-01-10",
-    // language: "Python",
-    // per_page: RepositoryPerPage.FIFTY,
-  });
-  console.log(repositories);
-})();
