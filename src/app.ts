@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(
   [
     body("date").isString().trim(),
-    body("language").isString().trim().optional(),
-    body("per_page").isInt().isIn([10, 50, 100]).optional(),
+    body("language").isString().trim().optional({ nullable: true }),
+    body("per_page").isInt().isIn([10, 50, 100]).optional({ nullable: true }),
   ],
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
