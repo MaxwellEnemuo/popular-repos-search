@@ -1,8 +1,7 @@
 import express from "express";
 import { Response, Request, NextFunction } from "express";
-import { getPopularRepositories } from ".";
-import { GetPopularRepositories } from "./types";
 import { body, validationResult } from "express-validator";
+import { getPopularRepositoriesController } from "./controllers/getPopularRepositoriesController";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -24,20 +23,7 @@ app.use(
   }
 );
 
-app.post("/repositories", async (req: Request, res: Response) => {
-  const { date, language, per_page } = req.body as GetPopularRepositories;
-  try {
-    const repositories = await getPopularRepositories({
-      date,
-      language,
-      per_page,
-    });
-    res.send({ repositories });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Failed to fetch repositories" });
-  }
-});
+app.post("/repositories", getPopularRepositoriesController);
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
