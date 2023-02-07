@@ -26,16 +26,16 @@ $ npm install
 $ npm run build
 ```
 
-### Run app in debug mode
-
-```bash
-$ npm run serve-debug
-```
-
 ### Test
 
 ```bash
 $ npm test
+```
+
+### Start app
+
+```bash
+$ docker-compose up
 ```
 
 Make a post request to:
