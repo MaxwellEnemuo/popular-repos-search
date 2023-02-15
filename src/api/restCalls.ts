@@ -8,7 +8,7 @@ import { GITHUB_SEARCH_URL } from "./externalUrls";
  * @param queryParams
  * @returns
  */
-export const handlePopularRepositoriesApiCall = async (
+export const fetchPopularRepositories = async (
   queryParams: QueryParams
 ): Promise<RepositoryItems[]> => {
   try {
@@ -29,7 +29,7 @@ export const handlePopularRepositoriesApiCall = async (
       })
     );
   } catch (error) {
-    console.error("An error occurred while fetching repositories", error);
+    //Todo: add logger
     throw error;
   }
 };

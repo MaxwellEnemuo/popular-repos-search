@@ -30,6 +30,7 @@ $ npm run build
 
 ```bash
 $ npm test
+$ npm test:coverage
 ```
 
 ### Start app
@@ -41,7 +42,7 @@ $ docker-compose up
 Make a post request to:
 
 ```bash
-http://localhost:4000/repositories
+http://localhost:4000/api/repositories
 ```
 
 Example payload:
@@ -50,7 +51,7 @@ Example payload:
 {
 	"date": "2019-01-10",
 	"language": "Rust",
-	"per_page": 50
+	"perPage": 50
 }
 ```
 
@@ -63,4 +64,3 @@ Language and per_page are optional. It is not filtered by language in this case 
 ```
 
 https://user-images.githubusercontent.com/17248356/217186207-bd9231a7-c204-4a75-8b88-2172cef98f50.mov
-
