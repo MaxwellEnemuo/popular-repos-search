@@ -2,3 +2,4 @@
 /dist
 /.vscode
 /coverage
+/k8s/secrets.yaml

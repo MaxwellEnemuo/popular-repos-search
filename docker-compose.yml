@@ -1,12 +1,17 @@
 version: '3.4'
 
 services:
-  popularrepossearch:
-    image: popularrepossearch
+  dev:
+    image: popular-repos-search
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+    # command: npm run dev
     ports:
       - 4000:4000
+    # networks:
+    #   - nesjs-network
+    # volumes:
+    #   - .:/usr/src/app
+    #   - /usr/src/app/node_modules
+    restart: unless-stopped
