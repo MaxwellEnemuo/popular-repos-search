@@ -8,4 +8,4 @@ RUN npm run build
 EXPOSE 4000
 RUN chown -R node /usr/src/app
 USER node
-CMD ["npm","run","dev"]
+CMD ["npm", "start"]
