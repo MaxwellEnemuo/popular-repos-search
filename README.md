@@ -42,7 +42,7 @@ $ docker-compose up
 Make a post request to:
 
 ```bash
-http://localhost:4000/api/repositories
+http://localhost:4000/v1/api/repositories
 ```
 
 Example payload:
@@ -62,5 +62,3 @@ Language and per_page are optional. It is not filtered by language in this case 
 	"date": "2019-01-10"
 }
 ```
-
-https://user-images.githubusercontent.com/17248356/217186207-bd9231a7-c204-4a75-8b88-2172cef98f50.mov

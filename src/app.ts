@@ -12,7 +12,7 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 
 app.post(
-  "/api/repositories",
+  "/api/v1/repositories",
   validationMiddleware,
   validationErrorHandler,
   getPopularRepositoriesController

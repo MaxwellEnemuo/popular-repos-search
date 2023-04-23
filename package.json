@@ -5,8 +5,10 @@
   "module": "module",
   "scripts": {
     "start:debug": "nodemon --inspect dist/app.js",
-    "start": "nodemon dist/app.js",
-    "build": "tsc -w",
+    "start": "node dist/app.js",
+    "dev": "nodemon dist/app.js",
+    "build": "tsc",
+    "build:dev": "tsc -w",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
