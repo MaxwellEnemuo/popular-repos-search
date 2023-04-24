@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "module": "module",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MaxwellEnemuo/popular-repos-search.git"
+  },
   "scripts": {
     "start:debug": "nodemon --inspect dist/app.js",
     "start": "node dist/app.js",
