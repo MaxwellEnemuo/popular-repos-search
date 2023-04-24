@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  build-and-push:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,10 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Run tests
+        run: npm run test
+      
       - name: Build application
         run: npm run build
       
-      - name: Get version
+      - name: Update version
         id: semver
         uses: Paulhatch/semantic-version@v5.0.3
         with:
@@ -78,7 +81,10 @@ jobs:
         run: aws eks update-kubeconfig --name my-eks
       
       - name: Deploy application to EKS
-        run: kubectl apply -f k8s/popular-repos-search.yaml
+        run: |
+          kubectl apply -f k8s/secrets.yaml
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/popular-repos-search.yaml
 
 
   
