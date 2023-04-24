@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  test:
+  build-and-push-to-ecr:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -63,7 +63,7 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           
   deploy-to-kubernetes-cluster:
-    needs: build-and-push
+    needs: build-and-push-to-ecr
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
