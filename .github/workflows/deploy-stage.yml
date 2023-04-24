@@ -44,6 +44,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          # role-to-assume: ${{ vars.AWS_STAGING_ECR_ROLE_ARN }}
           aws-region: eu-central-1
       
       - name: Log in to Amazon ECR
@@ -51,7 +52,7 @@ jobs:
         with:
           registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com
       
-      - name: Build and push Docker image
+      - name: Build and push image to ECR
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -70,6 +71,8 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          # role-to-assume: ${{ vars.AWS_STAGING_ECR_ROLE_ARN }}
           aws-region: eu-central-1
       
       - name: Authenticate with EKS cluster
