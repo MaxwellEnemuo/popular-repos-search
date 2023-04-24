@@ -44,7 +44,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          # role-to-assume: ${{ vars.AWS_STAGING_ECR_ROLE_ARN }}
           aws-region: eu-central-1
       
       - name: Login to Amazon ECR Public
@@ -53,15 +52,15 @@ jobs:
         with:
           registry-type: public
 
-      - name: Build, tag, and push docker image to Amazon ECR Public
-        env:
-          REGISTRY: public.ecr.aws
-          REGISTRY_ALIAS: e0x6j1c2
-          REPOSITORY: popular-repos-search
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+      # - name: Build, tag, and push docker image to Amazon ECR Public
+      #   env:
+      #     REGISTRY: public.ecr.aws
+      #     REGISTRY_ALIAS: e0x6j1c2
+      #     REPOSITORY: popular-repos-search
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+      #     docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
           
   deploy-to-kubernetes-cluster:
     needs: build-and-push
@@ -76,7 +75,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          # role-to-assume: ${{ vars.AWS_STAGING_ECR_ROLE_ARN }}
           aws-region: eu-central-1
       
       - name: Authenticate with EKS cluster
