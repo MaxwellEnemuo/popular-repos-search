@@ -47,11 +47,6 @@ jobs:
           # role-to-assume: ${{ vars.AWS_STAGING_ECR_ROLE_ARN }}
           aws-region: eu-central-1
       
-      - name: Log in to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
-        with:
-          registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com
-      
       - name: Login to Amazon ECR Public
         id: login-ecr-public
         uses: aws-actions/amazon-ecr-login@v1
@@ -60,20 +55,13 @@ jobs:
 
       - name: Build, tag, and push docker image to Amazon ECR Public
         env:
-          REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com
+          REGISTRY: public.ecr.aws
           REGISTRY_ALIAS: e0x6j1c2
           REPOSITORY: popular-repos-search
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
-      
-      - name: Build and push image to ECR
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:${{ github.sha }}
           
   deploy-to-kubernetes-cluster:
     needs: build-and-push
