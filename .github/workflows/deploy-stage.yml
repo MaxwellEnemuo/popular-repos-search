@@ -57,7 +57,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: docker push public.ecr.aws/e0x6j1c2/popular-repos-search:${{ github.sha }}
+          tags: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:${{ github.sha }}
           
   deploy-to-kubernetes-cluster:
     needs: build-and-push
