@@ -4,7 +4,7 @@ metadata:
   name: popular-repos-search
   namespace: popular-repos-search-test
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: popular-repos-search
@@ -22,7 +22,7 @@ spec:
       - name: popular-repos-search
         image: 347819032830.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:latest
         ports:
-        - containerPort: 4000
+        - containerPort: 80
         imagePullPolicy: Always
         resources: 
           requests:
@@ -45,13 +45,13 @@ metadata:
   name: popular-repos-search
   namespace: popular-repos-search-test
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: popular-repos-search
   ports:
   - protocol: TCP
-    port: 4000
-    targetPort: 4000
+    port: 80
+    targetPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -71,7 +71,7 @@ spec:
               service:
                 name: popular-repos-search
                 port:
-                  number: 4000
+                  number: 80
 
 
 

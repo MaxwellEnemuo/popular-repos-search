@@ -82,7 +82,8 @@ jobs:
       
       - name: Deploy application to EKS
         run: |
-          kubectl apply -f k8s/namespace.yaml
+          myNamespace="popular-repos-search-test"
+          kubectl get namespace | grep -q "^$myNamespace" || kubectl apply -f k8s/namespace.yaml
           kubectl apply -f k8s/popular-repos-search.yaml
 
 
