@@ -5,7 +5,7 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --development --silent && mv node_modules ../
 COPY . .
 RUN npm run build
-EXPOSE 4000
+EXPOSE 80
 RUN chown -R node /usr/src/app
 USER node
 CMD ["npm", "start"]

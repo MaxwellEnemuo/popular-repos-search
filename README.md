@@ -42,7 +42,7 @@ $ docker-compose up
 Make a post request to:
 
 ```bash
-http://localhost:4000/v1/api/repositories
+http://localhost:80/v1/api/repositories
 ```
 
 Example payload:
