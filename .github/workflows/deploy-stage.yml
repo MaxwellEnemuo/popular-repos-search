@@ -1,5 +1,3 @@
-name: Deploy
-
 on:
   workflow_dispatch:
   push:
@@ -11,10 +9,8 @@ on:
 
 jobs:
   build-and-push-to-ecr:
+    name: Build and push to Amazon ECR
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['16.x']
 
     steps:
       - name: Checkout code
@@ -23,31 +19,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: 'npm'
           
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run tests
-        run: npm run test
-      
-      - name: Build application
-        run: npm run build
-      
-      - name: Update version
-        id: semver
-        uses: Paulhatch/semantic-version@v5.0.3
-        with:
-          minor-pattern: '(MINOR)'
+      - name: Install, test, and build 
+        run: |
+          npm ci
+          npm run test
+          npm run build
       
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: eu-central-1
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-deployment
       
       - name: Login to Amazon ECR 
         id: login-ecr
@@ -62,20 +47,20 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           
-  deploy-to-kubernetes-cluster:
+  deploy-to-eks-cluster:
+    name: Deploy to EKS cluster
     needs: build-and-push-to-ecr
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: eu-central-1
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-deployment
       
       - name: Authenticate with EKS cluster
         run: aws eks update-kubeconfig --name my-eks
@@ -85,7 +70,3 @@ jobs:
           myNamespace="popular-repos-search-test"
           kubectl get namespace | grep -q "^$myNamespace" || kubectl apply -f k8s/namespace.yaml
           kubectl apply -f k8s/popular-repos-search.yaml
-
-
-  
-

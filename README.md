@@ -14,15 +14,10 @@
 - GitHub provides a public search endpoint which you can use for fetching the most popular repositories:
   https://api.github.com/search/repositories?q=created:>2019-01-10&sort=stars&order=desc
 
-### Installation
+### Run locally
 
 ```bash
 $ npm install
-```
-
-### Build the app
-
-```bash
 $ npm run build
 ```
 
@@ -30,7 +25,6 @@ $ npm run build
 
 ```bash
 $ npm test
-$ npm test:coverage
 ```
 
 ### Start app
@@ -42,7 +36,7 @@ $ docker-compose up
 Make a post request to:
 
 ```bash
-http://localhost:80/v1/api/repositories
+http://localhost/api/v1/repositories
 ```
 
 Example payload:
@@ -55,7 +49,7 @@ Example payload:
 }
 ```
 
-Language and per_page are optional. It is not filtered by language in this case and per_page will default to 10.
+Language and per_page are optional. In this case pagination defaults to 10.
 
 ```bash
 {
