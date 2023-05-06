@@ -11,6 +11,9 @@ jobs:
   build-and-push-to-ecr:
     name: Build and push to Amazon ECR
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout code
