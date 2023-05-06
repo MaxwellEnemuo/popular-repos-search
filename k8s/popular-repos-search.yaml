@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: popular-repos-search
-        image: 347819032830.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:latest
+        image: 206896450261.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always

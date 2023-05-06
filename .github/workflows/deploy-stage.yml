@@ -32,7 +32,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: eu-central-1
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-deployment
+          role-to-assume: arn:aws:iam::206896450261:role/github-deployment
       
       - name: Login to Amazon ECR 
         id: login-ecr
@@ -40,7 +40,7 @@ jobs:
 
       - name: Build, tag, and push docker image to Amazon ECR Public
         env:
-          REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com
+          REGISTRY: 206896450261.dkr.ecr.eu-central-1.amazonaws.com
           REPOSITORY: popular-repos-search
           IMAGE_TAG: latest
         run: |
@@ -60,7 +60,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: eu-central-1
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-deployment
+          role-to-assume: arn:aws:iam::206896450261:role/github-deployment
       
       - name: Authenticate with EKS cluster
         run: aws eks update-kubeconfig --name my-eks
