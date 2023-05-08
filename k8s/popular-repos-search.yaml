@@ -72,6 +72,3 @@ spec:
                 name: popular-repos-search
                 port:
                   number: 80
-
-
-

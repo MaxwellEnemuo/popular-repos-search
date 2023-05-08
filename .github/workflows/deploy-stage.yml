@@ -8,8 +8,28 @@ on:
       - master
 
 jobs:
+  run-tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'npm'
+          
+      - name: Install and run tests
+        run: |
+          npm ci
+          npm test
+
   build-and-push-to-ecr:
     name: Build and push to Amazon ECR
+    needs: run-tests
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -25,10 +45,9 @@ jobs:
           node-version: 18
           cache: 'npm'
           
-      - name: Install, test, and build 
+      - name: Build application
         run: |
           npm ci
-          npm run test
           npm run build
       
       - name: Configure AWS credentials
