@@ -15,13 +15,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-    
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 18
-          cache: 'npm'
-          
+          cache: "npm"
+
       - name: Install and run tests
         run: |
           npm ci
@@ -38,25 +38,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18
-          cache: 'npm'
-          
+          node-version: "18"
+          cache: "npm"
+
       - name: Build application
         run: |
           npm ci
           npm run build
-      
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: eu-central-1
           role-to-assume: arn:aws:iam::206896450261:role/github-deploy
-      
-      - name: Login to Amazon ECR 
+
+      - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
@@ -68,7 +68,7 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-          
+
   deploy-to-eks-cluster:
     name: Deploy to EKS cluster
     needs: build-and-push-to-ecr
@@ -83,10 +83,10 @@ jobs:
         with:
           aws-region: eu-central-1
           role-to-assume: arn:aws:iam::206896450261:role/github-deploy
-      
+
       - name: Authenticate with EKS cluster
         run: aws eks update-kubeconfig --name my-eks
-      
+
       - name: Deploy application to EKS
         run: |
           myNamespace="popular-repos-search-test"
