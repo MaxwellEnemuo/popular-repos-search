@@ -30,7 +30,7 @@ $ npm test
 ### Start app
 
 ```bash
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 Make a post request to:
