@@ -5,16 +5,8 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
-  coveragePathIgnorePatterns: [
-    "<rootDir>/build/",
-    "<rootDir>/src/types*",
-    "<rootDir>/src/app*",
-  ],
-  testPathIgnorePatterns: [
-    "<rootDir>/build/",
-    "<rootDir>/node_modules/",
-    "./src/types/",
-  ],
+  coveragePathIgnorePatterns: ["<rootDir>/build/", "<rootDir>/src/types*", "<rootDir>/src/app*"],
+  testPathIgnorePatterns: ["<rootDir>/build/", "<rootDir>/node_modules/", "./src/types/"],
   moduleFileExtensions: ["js", "ts"],
   modulePaths: ["<rootDir>/src/"],
   collectCoverageFrom: ["./src/**"],

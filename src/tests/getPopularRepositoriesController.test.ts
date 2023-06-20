@@ -39,11 +39,7 @@ describe("getPopularRepositoriesController", () => {
         created_at: "2019-02-26T22:06:52Z",
       },
     ];
-    (
-      getPopularRepositories as jest.MockedFunction<
-        typeof getPopularRepositories
-      >
-    ).mockResolvedValue(repositories);
+    (getPopularRepositories as jest.MockedFunction<typeof getPopularRepositories>).mockResolvedValue(repositories);
 
     await getPopularRepositoriesController(req, res);
 
@@ -51,11 +47,9 @@ describe("getPopularRepositoriesController", () => {
   });
 
   it("should return a 500 error if the service fails", async () => {
-    (
-      getPopularRepositories as jest.MockedFunction<
-        typeof getPopularRepositories
-      >
-    ).mockRejectedValue(new Error("Failed to fetch data"));
+    (getPopularRepositories as jest.MockedFunction<typeof getPopularRepositories>).mockRejectedValue(
+      new Error("Failed to fetch data"),
+    );
 
     await getPopularRepositoriesController(req, res);
 

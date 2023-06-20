@@ -19,21 +19,21 @@ spec:
         app: popular-repos-search
     spec:
       containers:
-      - name: popular-repos-search
-        image: 206896450261.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:latest
-        ports:
-        - containerPort: 80
-        imagePullPolicy: Always
-        resources: 
-          requests:
-            cpu: 1m
-            memory: 128Mi
-          limits:
-            cpu: 200m
-            memory: 256Mi
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        securityContext: {}
+        - name: popular-repos-search
+          image: 206896450261.dkr.ecr.eu-central-1.amazonaws.com/popular-repos-search:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 1m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          securityContext: {}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -49,9 +49,9 @@ spec:
   selector:
     app: popular-repos-search
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

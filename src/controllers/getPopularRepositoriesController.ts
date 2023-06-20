@@ -2,10 +2,7 @@ import { Response, Request } from "express";
 import { GetPopularRepositories } from "../types";
 import { getPopularRepositories } from "../service/getPopularRepositories";
 
-export const getPopularRepositoriesController = async (
-  req: Request,
-  res: Response
-) => {
+export const getPopularRepositoriesController = async (req: Request, res: Response) => {
   const { date, language, perPage } = req.body as GetPopularRepositories;
   try {
     const repositories = await getPopularRepositories({

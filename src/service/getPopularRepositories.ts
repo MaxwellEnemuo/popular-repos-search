@@ -1,9 +1,5 @@
 import { fetchPopularRepositories } from "../api/restCalls";
-import {
-  GetPopularRepositories,
-  RepositoryItems,
-  RepositoryPerPage,
-} from "../types";
+import { GetPopularRepositories, RepositoryItems, RepositoryPerPage } from "../types";
 
 export const getPopularRepositories = ({
   date,
