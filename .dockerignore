@@ -20,5 +20,10 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
+**/k8s
+**/.github
+**.DS_Store
+**/infrastructure
+**/coverage
 LICENSE
 README.md

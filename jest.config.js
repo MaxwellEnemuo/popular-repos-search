@@ -6,12 +6,12 @@ module.exports = {
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
   coveragePathIgnorePatterns: [
-    "<rootDir>/dist/",
+    "<rootDir>/build/",
     "<rootDir>/src/types*",
     "<rootDir>/src/app*",
   ],
   testPathIgnorePatterns: [
-    "<rootDir>/dist/",
+    "<rootDir>/build/",
     "<rootDir>/node_modules/",
     "./src/types/",
   ],

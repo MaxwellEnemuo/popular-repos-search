@@ -14,13 +14,6 @@
 - GitHub provides a public search endpoint which you can use for fetching the most popular repositories:
   https://api.github.com/search/repositories?q=created:>2019-01-10&sort=stars&order=desc
 
-### Run locally
-
-```bash
-$ npm install
-$ npm run build
-```
-
 ### Test
 
 ```bash
@@ -36,7 +29,7 @@ $ docker-compose up -d
 Make a post request to:
 
 ```bash
-http://localhost/api/v1/repositories
+http://localhost:8080/api/v1/repositories
 ```
 
 Example payload:

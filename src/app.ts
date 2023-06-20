@@ -3,11 +3,12 @@ import { getPopularRepositoriesController } from "./controllers/getPopularReposi
 import {
   validationErrorHandler,
   validationMiddleware,
-} from "./middleware/validationMiddleware";
+} from "./middlewares/validationMiddleware";
+import errorHandler from "./middlewares/errorHandler";
 
 export const app = express();
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 
@@ -21,3 +22,5 @@ app.post(
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+
+app.use(errorHandler);

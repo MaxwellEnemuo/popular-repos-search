@@ -3,7 +3,7 @@ import express from "express";
 import {
   validationMiddleware,
   validationErrorHandler,
-} from "../middleware/validationMiddleware";
+} from "../middlewares/validationMiddleware";
 
 const app = express();
 
